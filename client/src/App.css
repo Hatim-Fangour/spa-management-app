@@ -1,0 +1,38 @@
+.pageView{
+    /* width: 50%; */
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.stdropdown-container {
+            /* border: none; */
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            border: none !important;
+
+border-radius: 0;
+          }
+
+.stdropdown-input,.stsearch-box {
+              cursor: pointer;
+              padding: 0;
+              height: 100%;
+              border-radius: 5px 5px 0 0;
+              border-bottom: 0;
+              background-color: transparent;
+}
+
+.stsearch-box:hover {
+border-color: black;
+}
+
+.stsearch-box input {
+    height: 100%;
+    background-color: transparent;
+    border: none !important;
+}
+
+.stdropdown-tools {
+    margin-right: 15px;
+}

@@ -1,0 +1,260 @@
+
+                <Popover
+            // key={tabValue} // Add this line
+            open={isPopoverOpen}
+            onClose={handleClosePopover}
+            anchorReference="anchorPosition"
+            anchorPosition={{
+              top: anchorPosition.top,
+              left: anchorPosition.left,
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            anchorOrigin={{
+              vertical: "top", // Add this to anchor from top
+              horizontal: "left",
+            }}
+            sx={{
+              "& .MuiPopover-paper": {
+                display: "flex",
+                flexDirection: "column",
+                height: "600px", // Fixed height - this keeps the top position stable
+                maxHeight: "80vh",
+                overflow: "hidden",
+              },
+            }}
+          >
+            {selectedEvent && (
+              <Box
+                className="popoverRbcEvent"
+                sx={{
+                  p: 3,
+                  width: "500px",
+                  height: "100%", // Take full height of popover
+                  maxWidth: "500px",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Box className="popoverRbcEventHeader h-12 flex items-center justify-between py-2 px-0">
+                  <span className="headerTitle text-[20px] font-bold">
+                    Appointment
+                  </span>
+                  <span className="headerCloseBtn" onClick={handleClosePopover}>
+                    <Close />
+                  </span>
+                </Box>
+
+                <Box
+                  id="firstBox"
+                  sx={{
+                    width: "100%",
+                    flex: 1, // This will take remaining space
+                    overflow: "hidden", // Prevent overflow
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <TabContext value={tabValue} className="h-12" id="TabContext">
+                    <Box
+                     sx={{
+                    borderBottom: 1,
+                    borderColor: "divider",
+                    height: "40px",
+                    flexShrink: 0, // Don't shrink the tab header
+                  }}
+                    >
+                      <TabList
+                        id="TabList"
+                        onChange={handleChangeTab}
+                        aria-label="lab API tabs"
+                        sx={{
+                          height: "100%",
+                          minHeight: "30px",
+                        }}
+                      >
+                        <Tab id="Tab" label="details" value="1" />
+                        <Tab id="Tab" label="history" value="2" />
+                      </TabList>
+                    </Box>
+
+                    <TabPanel
+                      value="1"
+                      sx={{
+                        flex: 1,
+                        overflow: "auto",
+                        minHeight: "400px", // Set minimum height
+                      }}
+                    >
+                      <div className="tabContainer details flex flex-col items-start gap-5 overflow-auto mb-3">
+                        <h4 className="eventTitle w-full text-center uppercase my-3 font-bold">
+                          {selectedEvent?.title}
+                        </h4>
+
+                        <div className="grouper flex w-full items-center gap-12">
+                          {(selectedEvent?.type === "Service" ||
+                            selectedEvent?.type === "Time Off") && (
+                            <div className="durationConatiner container flex gap-5">
+                              <span className="durationTitle title  h-8">
+                                <TimerOutlined />
+                              </span>
+                              <span className="duration data">
+                                {selectedEvent.type === "Service"
+                                  ? calculateDuration(
+                                      selectedEvent?.start,
+                                      selectedEvent?.end,
+                                      selectedEvent?.allDay
+                                    )
+                                  : `${calculateDurationInDays(
+                                      selectedEvent?.interval?.start?.date,
+                                      selectedEvent?.interval?.end?.date
+                                    )} days
+                            (${getDaysRemaining(
+                              selectedEvent?.interval?.end?.date
+                            )} days left)`}
+                              </span>
+                            </div>
+                          )}
+
+                          {selectedEvent?.type === "Service" && (
+                            <div className="costContainer container flex gap-5">
+                              <>
+                                <span className="costTitle title  h-8">
+                                  <AttachMoney />
+                                </span>
+                                <span className="cost data">
+                                  {selectedEvent.reason?.promoPrice
+                                    ? `${selectedEvent.reason?.promoPrice} $`
+                                    : `${selectedEvent.reason?.price} $`}
+                                </span>
+                              </>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="dateTimeContainer container flex gap-5">
+                          <AccessTime className="title h-8" />
+
+                          <div className="date data">
+                            {selectedAppointment?.interval?.start?.date}
+                          </div>
+                          <div className="timeInterval data">
+                            {!selectedEvent?.allDay
+                              ? `${selectedEvent?.interval?.start.time}  ${
+                                  selectedEvent.type === "Service" ||
+                                  selectedEvent.type === "Time Off"
+                                    ? `- ${selectedEvent?.interval?.end.time}`
+                                    : ""
+                                }`
+                              : `to  ${selectedEvent?.interval?.end.date}`}
+                          </div>
+                          {/* <div className="starting">
+                      <div className="startingDate data">
+
+                        {selectedAppointment?.time?.from}
+                      </div>
+                    </div> */}
+
+                          {/* <div className="ending">
+                      <div className="endingDate data">
+                      {selectedAppointment?.time?.to}
+                      </div>
+                    </div> */}
+                        </div>
+                        
+                        <div className="grouper flex w-full items-center gap-12">
+                          <div className="eventTypeContainer container flex gap-5">
+                            <div className="eventTypeTitle title  h-8">
+                              <SpaOutlined />
+                            </div>
+                            <div className="eventType data">
+                              {selectedEvent.type}
+                            </div>
+                          </div>
+                          <div className="concernedContainer container flex gap-5">
+                            <div className="concernedTitle title  h-8">
+                              <PersonOutlineOutlined />
+                            </div>
+                            <div className="concerned data">
+                              <span className="conernedName">
+                                {selectedEvent.concerned?.fullName}
+                              </span>
+                              {selectedEvent.type === "Service" && (
+                                <span className="concernedDetails">
+                                  <div>{selectedEvent.concerned?.email}</div>
+
+                                  <div>{selectedEvent.concerned?.phone}</div>
+                                  <div>{selectedEvent.concerned?.address}</div>
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {!selectedEvent?.type === "Reminder" && (
+                          <div className="concernedServiceContainer container">
+                            <div className="concernedServiceTitle title  h-8">
+                              <SelfImprovementOutlined />
+                            </div>
+                            <div className="concernedService data">
+                              {selectedEvent?.reason?.name}
+                            </div>
+                          </div>
+                        )}
+
+                        {selectedEvent?.type === "Service" && (
+                          <div className="grouper flex w-full items-center gap-12">
+                            <div className="durationConatiner container flex gap-5">
+                              <span className="durationTitle title h-8">
+                                <BedroomChildOutlined />
+                              </span>
+                              <span className="duration data">
+                                {selectedEvent?.room ?? "Room"}
+                              </span>
+                            </div>
+
+                            <div className="durationConatiner container flex gap-5">
+                              <span className="durationTitle title  h-8">
+                                <SafetyDividerOutlined />
+                              </span>
+                              <span className="duration data">
+                                {selectedEvent?.nurse}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="descContainer container flex gap-5">
+                          <div className="eventDescriptionTitle title  h-8">
+                            <SubjectOutlined />
+                          </div>
+                          <div className="eventNote data">
+                            {selectedEvent?.note ?? "Note"}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="popoverRbcEventFooter flex items-center justify-end">
+                        <Button
+                          className="EditEventBtn eventOptBtn"
+                          // onClick={handleEditEvent}
+                        >
+                          <EditOutlined />
+                        </Button>
+                        <Button
+                          className="deleteEventBtn eventOptBtn"
+                          // onClick={handleDeleteEvent}
+                        >
+                          <DeleteOutlined />
+                        </Button>
+                      </div>
+                    </TabPanel>
+                    <TabPanel value="2">History</TabPanel>
+                  </TabContext>
+                </Box>
+              </Box>
+            )}
+          </Popover>

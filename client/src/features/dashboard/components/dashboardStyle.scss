@@ -1,0 +1,55 @@
+// // savingsTable.scss
+// // .inOutTable {
+//   // Target the specific DataGrid by class
+//   .MuiDataGrid-main {
+//     // Style the type cells - better approach
+//     .MuiDataGrid-row {
+//       .MuiDataGrid-cell {
+//         .type-cell {
+//           font-weight: 600;
+//           border-radius: 20px;
+//           padding: 4px 10px;
+
+//           // Income type
+//           &.income-type {
+//             background-color: rgba(0, 128, 0, 0.1);
+//             color: #008000;
+//             border: 1px solid rgba(0, 128, 0, 0.3);
+//             // display: inline-block;
+//           }
+//           &.expense-type {
+//             background-color: rgba(255, 0, 0, 0.1);
+//             color: #ff0000;
+//             border: 1px solid rgba(255, 0, 0, 0.3);
+//           }
+//         }
+
+//         .status-cell {
+//             font-weight: 600;
+//           border-radius: 20px;
+//           padding: 4px 10px;
+//           &.paid-status {
+//             background-color: rgba(53, 255, 103, 0.1);
+//             color: #006b09;
+//             border: 1px solid rgba(4, 255, 0, 0.3);
+//           }
+
+//           &.pending-status {
+//             background-color: rgba(79, 219, 251, 0.1);
+//             color: #0d6a7b;
+//             border: 1px solid rgba(0, 255, 255, 0.3);
+//           }
+//           &.other-status {
+//             background-color: rgba(247, 254, 105, 0.637);
+//             color: #606e00;
+//             border: 1px solid rgba(229, 255, 0, 0.92);
+//           }
+//         }
+
+//         // Expense type
+//       }
+//     }
+
+   
+//   }
+// // }

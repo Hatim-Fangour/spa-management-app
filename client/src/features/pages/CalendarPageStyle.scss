@@ -1,0 +1,938 @@
+  @import "./variables";
+  
+  .calendarPageBody {
+    height: 100%;
+    // background-color: red;
+    // flex: 5;
+    // padding: 10px;
+
+    .calendar-container {
+      height: 100%;
+    //   padding: 20px;
+      box-sizing: border-box;
+
+      .rbc-toolbar {
+        .rbc-toolbar-label {
+          font-size: 20px;
+        }
+        .rbc-btn-group {
+          button {
+            border: 1px solid #cab06d;
+            border-radius: 90px;
+            cursor: pointer;
+            margin-right: 5px;
+            background-color: #ffe49f4f;
+            
+          }
+
+
+          .addAppointmentBtn {
+            border: none;
+            cursor: pointer;
+            background-color: black !important;
+            color: white;
+            font-weight: bold;
+            // padding: 0;
+
+            .addAppointmentIcon {
+              font-size: 20px;
+              margin-top: 2px;
+              // height: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    .calendar-container.month-view {
+      .rbc-month-view {
+        border: none;
+        margin-top: 10px;
+
+        .rbc-month-header {
+          // background-color: red;
+          padding-bottom: 5px;
+
+          .rbc-header {
+            border: none;
+          }
+        }
+
+        .rbc-month-row {
+          border: none;
+
+          &:last-child {
+            // background-color: red;
+            border-bottom: 0.5px solid rgba(128, 128, 128, 0.57);
+          }
+          // .rbc-row-bg {
+          // }
+          .rbc-row-content {
+            .rbc-date-cell {
+              padding-right: 3px;
+              padding-top: 1px;
+            }
+
+            // .rbc-row {
+            //   // margin-top: 2px;
+            // }
+          }
+          .rbc-day-bg {
+            // border: 2px solid red;
+            border: 0.5px solid rgba(128, 128, 128, 0.57);
+            // border-radius: 20px;
+            // margin-right: 5px;
+            // margin-bottom: 5px;
+            padding: 10px;
+            border-bottom: none;
+            border-right: none;
+            &:last-child {
+              // background-color: red;
+              border-right: 0.5px solid rgba(128, 128, 128, 0.57);
+            }
+          }
+          .rbc-day-bg.rbc-today {
+            background-color: transparent;
+          }
+          .rbc-row {
+            .rbc-button-link.rbc-show-more {
+              color: rgb(110, 110, 110);
+            }
+            .rbc-event {
+              box-sizing: border-box;
+              padding: 0;
+              background-color: $rbc-event-content-selected-bgc-1;
+              white-space: wrap;
+              color: black;
+              outline: none;
+              width: initial;
+              font-size: 12px;
+              padding: 3px 0px;
+              position: relative;
+              overflow: hidden;
+              border-radius: 2px;
+            //   border: 0.2px solid $rbc-event-brdr-color-1;
+
+              &.timeOffEvent {
+                background-color: $rbc-event-content-selected-bgc-1;
+
+                &::before {
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  content: "";
+                  background-color: $rbc-event-brdr-color-1;
+                  width: 5px;
+                  height: 100%;
+                }
+
+                &.rbc-selected {
+                  background-color: $rbc-event-content-selected-bgc-1;
+                  z-index: 999;
+                }
+              }
+
+              &.reminderEvent {
+                background-color: $rbc-event-content-selected-bgc-2;
+
+                &::before {
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  content: "";
+                  background-color: $rbc-event-brdr-color-2;
+                  width: 5px;
+                  height: 100%;
+                }
+
+                &.rbc-selected {
+                  background-color: $rbc-event-content-selected-bgc-2;
+                  z-index: 999;
+                }
+              }
+
+              &.serviceEvent {
+                // background-color: red;
+                background-color: $rbc-event-content-selected-bgc-3;
+
+                &::before {
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  content: "";
+                  background-color: black;
+                  background-color: $rbc-event-brdr-color-3;
+                  width: 5px;
+                  height: 100%;
+                }
+
+                &.rbc-selected {
+                  background-color: $rbc-event-content-selected-bgc-3;
+                  z-index: 999;
+                }
+              }
+
+              .rbc-event-content {
+                padding-left: 7px;
+              }
+            }
+
+            .rbc-date-cell.rbc-now {
+              button.rbc-button-link {
+                // text-align: center;
+                // padding: 5px;
+                // margin-top: 5px;
+                // margin-right: 2px;
+                color: white;
+                font-weight: bold;
+                background-color: #cab06d;
+                // border: 1px solid black;
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .calendar-container.week-view {
+      .rbc-time-view {
+        border: none;
+        margin-top: 10px;
+
+        .rbc-time-header {
+          margin-right: 3px !important;
+          .rbc-time-header-content {
+            border-color: rgba(134, 134, 134, 0.11);
+
+            // background-color: red;
+
+            .rbc-time-header-cell {
+              .rbc-header {
+                // border: none;
+
+                .rbc-button-link {
+                  font-size: 90%x;
+                  // color: red;
+                  font-weight: bold;
+                }
+                // &.rbc-today {
+                //   // background-color: blue;
+                // }
+              }
+            }
+
+            .rbc-allday-cell{
+              .rbc-row-content{
+                .rbc-row{
+                  .rbc-row-segment{
+                    .rbc-event.timeOffEvent.rbc-event-allday{
+                      position: relative;
+                      overflow: hidden;
+
+                      &.timeOffEvent {
+                        background-color: $rbc-event-bgc-1;
+      
+                        &::before {
+                          position: absolute;
+                          left: 0;
+                          top: 0;
+                          content: "";
+                          background-color: $rbc-event-brdr-color-1;
+                          width: 10px;
+                          height: 100%;
+                          // z-index: 999;
+                        }
+      
+                        .rbc-event-content {
+                          color: black;
+                          background-color: transparent;
+                          padding-left: 10px;
+                        }
+      
+                        &.rbc-selected {
+                          background-color: $rbc-event-content-selected-bgc-1;
+                          z-index: 999;
+                        }
+                      }
+                    }
+                  }
+
+                }
+              }
+            }
+          }
+        }
+
+        .rbc-time-content {
+          // border-top: none;
+          // padding-right: 10px;
+
+          &::-webkit-scrollbar {
+            width: 5px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: #acabab;
+            border-radius: 4px;
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background: #797979d3;
+          }
+
+          & > * + * > * {
+            border-left: none;
+          }
+
+          .rbc-time-gutter {
+            .rbc-timeslot-group {
+              // background-color: red;
+              border: 1px solid rgba(181, 181, 181, 0.36);
+              // border-radius: 20px;
+              // margin-top: 2px;
+              // margin-right: 5px;
+              border-bottom: none;
+              min-height: 180px;
+
+              &:last-child {
+                border: 1px solid rgba(181, 181, 181, 0.36);
+              }
+              .rbc-time-slot {
+                padding-top: 8px;
+              }
+              .rbc-label {
+                margin-top: 5px;
+              }
+            }
+          }
+
+          .rbc-day-slot {
+            .rbc-timeslot-group {
+              border: 1px solid rgba(181, 181, 181, 0.36);
+              border-bottom: none;
+              border-right: none;
+              min-height: 180px;
+
+              &:nth-child(12) {
+                border-bottom: 1px solid rgba(181, 181, 181, 0.36);
+                // background-color: green;
+              }
+
+              .rbc-time-slot:first-child {
+                border: none;
+              }
+              .rbc-time-slot:last-child {
+                border-color: rgba(134, 134, 134, 0.042);
+                // background-color: red;
+              }
+
+              &:last-child {
+                background-color: green;
+              }
+            }
+
+            .rbc-events-container {
+              .rbc-event {
+                padding: 0;
+                font-size: 90%;
+                white-space: wrap;
+                border: none;
+                box-sizing: border-box;
+                color: black;
+                width: initial;
+                font-size: 14px;
+                outline: none;
+                // width: 15% !important;
+
+                &.timeOffEvent {
+                  background-color: $rbc-event-bgc-1;
+
+                  &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "";
+                    background-color: $rbc-event-brdr-color-1;
+                    width: 10px;
+                    height: 100%;
+                    // z-index: 999;
+                  }
+
+                  .rbc-event-content {
+                    background-color: $rbc-event-content-bgc-1;
+                  }
+
+                  &.rbc-selected {
+                    background-color: $rbc-event-content-selected-bgc-1;
+                    z-index: 999;
+                  }
+                }
+
+                &.reminderEvent {
+                  background-color: $rbc-event-bgc-2;
+                  // width: 15% !important;
+
+                  &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "";
+                    background-color: $rbc-event-brdr-color-2;
+                    width: 10px;
+                    height: 100%;
+                    // z-index: 999;
+                  }
+
+                  .rbc-event-content {
+                    background-color: $rbc-event-content-bgc-2;
+                  }
+                  &.rbc-selected {
+                    background-color: $rbc-event-content-selected-bgc-2;
+                    z-index: 999;
+                  }
+                }
+
+                &.serviceEvent  {
+                  background-color: $rbc-event-bgc-3;
+                  // width: 15% !important;
+                  // left: 15% !important;
+
+                  &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "";
+                    background-color: $rbc-event-brdr-color-3;
+                    width: 10px;
+                    height: 100%;
+                    // z-index: 999;
+                  }
+
+                  .rbc-event-content {
+                    background-color: $rbc-event-content-bgc-3;
+                  }
+                  &.rbc-selected {
+                    background-color: $rbc-event-content-selected-bgc-3;
+                    z-index: 999;
+                  }
+
+                  // .rbc-event-label {
+                  //   font-size: 14px;
+                  //   padding: 4px 15px;
+                  // }
+
+                  // .rbc-event-content {
+                  //   padding: 4px 15px;
+                    // background-color: $rbc-event-content-selected-bgc-2;
+                  //   // padding-top: 5px;
+                  //   font-size: 100%;
+                  //   font-weight: bold;
+                  // }
+                }
+
+                .rbc-event-label {
+                  font-size: 14px;
+                  padding: 4px 15px;
+                }
+
+                .rbc-event-content {
+                  padding: 4px 15px;
+                  // padding-top: 5px;
+                  font-size: 100%;
+                  font-weight: bold;
+                }
+              }
+            }
+
+            &:last-child {
+              // background-color: rgb(33, 156, 198); /* Example styling */
+
+              .rbc-timeslot-group {
+                border: 1px solid rgba(181, 181, 181, 0.36);
+                // border-left: none;
+                border-bottom: none;
+                // background-color: blue;
+                // border-radius: 0px 20px 20px 0px;
+
+                &:nth-child(12) {
+                  border-bottom: 1px solid rgba(181, 181, 181, 0.36);
+                  // background-color: green;
+                }
+              }
+            }
+
+            .rbc-current-time-indicator {
+              background-color: #8f0202;
+            }
+          }
+        }
+      }
+    }
+
+    .calendar-container.day-view {
+      .rbc-time-view {
+        border: none;
+        // border-left: none;
+        .rbc-time-header {
+          margin-right: 0px !important;
+          .rbc-time-header-content {
+            border-color: rgba(134, 134, 134, 0.11);
+
+            // background-color: red;
+
+            .rbc-time-header-cell {
+              .rbc-header {
+                // border: none;
+
+                .rbc-button-link {
+                  font-size: 90%x;
+                  // color: red;
+                  font-weight: bold;
+                }
+                // &.rbc-today {
+                //   // background-color: blue;
+                // }
+              }
+            }
+
+            .rbc-allday-cell{
+              .rbc-row-content{
+                .rbc-row{
+                  .rbc-row-segment{
+                    .rbc-event.timeOffEvent.rbc-event-allday{
+                      
+                      &.timeOffEvent {
+                        background-color: $rbc-event-bgc-1;
+                        position: relative;
+                        overflow: hidden;
+      
+                        &::before {
+                          position: absolute;
+                          left: 0;
+                          top: 0;
+                          content: "";
+                          background-color: $rbc-event-brdr-color-1;
+                          width: 10px;
+                          height: 100%;
+                          // z-index: 999;
+                        }
+      
+                        .rbc-event-content {
+                          color: black;
+                          background-color: transparent;
+                          padding-left: 10px;
+                        }
+      
+                        &.rbc-selected {
+                          background-color: $rbc-event-content-selected-bgc-1;
+                          z-index: 999;
+                        }
+                      }
+                    }
+                  }
+
+                }
+              }
+            }
+          }
+        }
+
+
+
+
+        .rbc-time-content {
+          // border: none;
+          // padding-right: 10px;
+          &::-webkit-scrollbar {
+            width: 5px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: #acabab;
+            border-radius: 4px;
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background: #797979d3;
+          }
+
+          .rbc-time-gutter {
+            .rbc-timeslot-group {
+              border: 1px solid rgba(181, 181, 181, 0.36);
+              border-top: none;
+              min-height: 150px;
+              .rbc-time-slot {
+                margin-top: 5px;
+              }
+            }
+          }
+
+          .rbc-day-slot {
+            border: none;
+            background-color: transparent;
+
+            .rbc-current-time-indicator {
+              background-color: #8f0202;
+            }
+
+            .rbc-timeslot-group {
+              border: 1px solid rgba(181, 181, 181, 0.36);
+              border-left: none;
+              border-top: none;
+              min-height: 150px;
+            }
+
+            .rbc-events-container {
+              .rbc-event {
+                padding: 0;
+                font-size: 90%;
+                white-space: wrap;
+                border: none;
+                box-sizing: border-box;
+                color: black;
+                width: initial;
+                font-size: 14px;
+                outline: none;
+                width: 15% !important;
+
+                &.timeOffEvent {
+                  background-color: $rbc-event-bgc-1;
+
+                  &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "";
+                    background-color: $rbc-event-brdr-color-1;
+                    width: 10px;
+                    height: 100%;
+                    // z-index: 999;
+                  }
+
+                  .rbc-event-content {
+                    background-color: $rbc-event-content-bgc-1;
+                  }
+
+                  &.rbc-selected {
+                    background-color: $rbc-event-content-selected-bgc-1;
+                    z-index: 999;
+                  }
+                }
+
+                &.reminderEvent {
+                  background-color: $rbc-event-bgc-2;
+                  // width: 15% !important;
+
+                  &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "";
+                    background-color: $rbc-event-brdr-color-2;
+                    width: 10px;
+                    height: 100%;
+                    // z-index: 999;
+                  }
+
+                  .rbc-event-content {
+                    background-color: $rbc-event-content-bgc-2;
+                  }
+                  &.rbc-selected {
+                    // background-color: $rbc-event-content-selected-bgc-2;
+                    z-index: 999;
+                  }
+                }
+
+                &.serviceEvent {
+                  background-color: $rbc-event-bgc-3;
+                  // width: 15% !important;
+                  // left: 15% !important;
+
+                  &::before {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    content: "";
+                    background-color: $rbc-event-brdr-color-3;
+                    width: 10px;
+                    height: 100%;
+                    // z-index: 999;
+                  }
+
+                  .rbc-event-content {
+                    background-color: $rbc-event-content-bgc-3;
+                  }
+                  &.rbc-selected {
+                    background-color: $rbc-event-content-selected-bgc-3;
+                    z-index: 999;
+                  }
+
+                  // .rbc-event-label {
+                  //   font-size: 14px;
+                  //   padding: 4px 15px;
+                  // }
+
+                  // .rbc-event-content {
+                  //   padding: 4px 15px;
+                    // background-color: $rbc-event-content-selected-bgc-2;
+                  //   // padding-top: 5px;
+                  //   font-size: 100%;
+                  //   font-weight: bold;
+                  // }
+                }
+
+                .rbc-event-label {
+                  font-size: 14px;
+                  padding: 4px 15px;
+                }
+
+                .rbc-event-content {
+                  padding: 4px 15px;
+                  // padding-top: 5px;
+                  font-size: 100%;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .calendar-container.agenda-view {
+      .rbc-agenda-view {
+        .rbc-agenda-empty {
+          text-align: center;
+          padding-top: 50px;
+          // font-weight : bold;
+          font-size: 30px;
+        }
+
+        // .rbc-agenda-table {
+        //   // border: 1px solid green
+        // }
+
+        // .rbc-agenda-content {
+        //   // .rbc-agenda-table {
+        //   //   // border: 1px solid red;
+        //   //   // border-radius: 10px;
+        //   // }
+        // }
+      }
+    }
+  }
+
+//   .MuiPopover-paper {
+//   // background-color: rgb(107, 107, 255);
+//   overflow-x: hidden !important;
+//   overflow-y: hidden !important;
+//   max-width: 500px;
+//   max-height: 600px;
+//   box-sizing: border-box;
+//   width: 500px;
+//   .popoverRbcEvent {
+//     padding: 15px;
+//     // position: relative;
+
+//     .Toastify__toast.confirmation-toast {
+//       border: 1px solid rgba(136, 136, 136, 0.511);
+//       width: 400px;
+//       padding: 10px 30px;
+//       .deleteConfirmationToast {
+//         display: flex;
+//         flex-direction: column;
+//         gap: 10px;
+//         width: 100%;
+//         margin-top: 20px;
+  
+//         .confirmationButtons {
+//           width: 100%;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           gap: 10px;
+//           margin-top: 20px;
+  
+//           button {
+//             border: none;
+//             border-radius: 40px;
+//             font-weight: bold;
+//             font-size: 17px;
+//             padding: 10px 30px;
+//             cursor: pointer;
+//           }
+//           .yesBtn {
+//             background-color: rgb(219, 0, 0);
+//             color: white;
+//             &:hover {
+//               box-shadow: 0px 0px 5px 0px rgba(219, 0, 0, 0.75);
+//             }
+//           }
+  
+         
+//         }
+//       }
+//     }
+
+//     .popoverRbcEventHeader {
+//       // height: 10%;
+//       display: flex;
+//       align-items: center;
+//       justify-content: space-between;
+//       padding: 10px 0px;
+//       .headerTitle {
+//         font-size: 20px;
+//         font-weight: bolder;
+//       }
+
+//       .headerCloseBtn{
+//         cursor: pointer;
+//       }
+//     }
+
+//     .popoverRbcEventBody {
+//       .RbcEventBodyContainer {
+//         .MuiTabPanel-root {
+//           padding: 15px;
+//           box-sizing: border-box;
+//           padding-bottom: 40px;
+//           // overflow-y: auto;
+//           // overflow-x: scroll;
+
+//           .tabContainer {
+//             display: flex;
+//             flex-direction: column;
+//           }
+
+//           .tabContainer.details {
+//             display: flex;
+//             flex-direction: column;
+//             align-items: start;
+//             gap: 10px;
+//             // position: relative;
+//             overflow: auto;
+//             margin-bottom: 10px;
+
+//             .grouper {
+//               display: flex;
+//               gap: 50px;
+//               width: 100%;
+//               align-items: center;
+
+//               .container {
+//                 display: flex;
+//                 gap: 20px;
+//               }
+//             }
+
+//             .eventTitle {
+//               text-align: center;
+//               margin: 10px 0px;
+//               width: 100%;
+//               text-transform: uppercase;
+//             }
+
+//             .container {
+//               width: 100%;
+//               display: flex;
+//               align-items: center;
+//               gap: 20px;
+
+//               &.descContainer {
+//                 .eventNote {
+//                   height: 60px;
+//                   // background-color: rgba(255, 0, 0, 0.274);
+//                   width: 90%;
+//                   overflow-wrap: break-word;
+//                   overflow-y: auto;
+//                   border: 1px solid rgba(62, 62, 62, 0.155);
+//                   border-radius: 5px;
+//                   padding-right: 5px;
+//                 }
+//               }
+
+//               &.customerInfo {
+//                 align-items: start;
+//                 // background-color: greenyellow;
+
+//                 .data.concerned {
+//                   display: flex;
+//                   flex-direction: column;
+//                   gap: 10px;
+
+//                   .conernedName {
+//                     font-weight: bold;
+//                   }
+//                   // .concernedDetails{
+//                   //   padding-top: 15px;
+//                   //   background-color: red;
+//                   // }
+//                 }
+//               }
+//               .title {
+//                 height: 30px;
+//                 width: 30px;
+
+//                 .MuiSvgIcon-root {
+//                   height: 100%;
+//                   width: 100%;
+//                 }
+//                 // color: red;
+//                 // font-size: 20px;
+//               }
+
+//               .data {
+//                 padding: 5px 10px;
+
+//                 font-size: 17px;
+//                 // color: red;
+//               }
+//             }
+//           }
+
+//           .popoverRbcEventFooter {
+//             // background-color: rgba(255, 255, 0, 0.256);
+//             border-top: 1px solid rgba(0, 0, 0, 0.107);
+//             position: absolute;
+//             bottom: 0;
+//             left: 0;
+//             width: 100%;
+//             display: flex;
+//             align-items: center;
+//             justify-content: flex-end;
+//             padding: 10px 10px;
+//             height: 50px;
+
+//             .eventOptBtn{
+//               border: none;
+//               color:  rgba(0, 0, 0, 0.559);
+//               // padding: 0;
+//               border-radius: 50%;
+//               min-width: 40px;
+//               width: 40px;
+//               height: 40px;
+//               margin-right:10px;
+//               font-size: 15px;
+//             }
+
+//           }
+//         }
+//       }
+//     }
+
+  
+//   }
+// }
