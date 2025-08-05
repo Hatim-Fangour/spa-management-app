@@ -28,7 +28,6 @@ export const loginUser = createAsyncThunk(
   async (loginCredentials, { rejectWithValue }) => {
     try {
       const authData = await authService.login(loginCredentials);
-      
 
       if (authData.user.role !== 111) {
         // 4. Fetch ALL data in parallel (optimized)

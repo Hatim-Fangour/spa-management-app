@@ -13,6 +13,9 @@ export const AuthGuard = ({ children }) => {
   const { user, claims, isAuthenticated } = useSelector((state) => state.auth);
   const location = useLocation();
 
+  console.log(user)
+  console.log(claims)
+
   useEffect(() => {
     let unsubscribe;
 

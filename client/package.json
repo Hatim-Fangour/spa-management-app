@@ -1,7 +1,7 @@
 {
   "name": "auth-system-firebase",
   "version": "0.1.0",
-  "homepgae": ".",
+  "private": true,
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@docuseal/react": "^1.0.66",

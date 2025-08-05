@@ -38,7 +38,10 @@ app.use(bodyParser.json()); // To handle JSON payloads
 app.use(
   cors({
     // origin: "http://localhost:3000",
-    origin: ["https://yourdomain.com", "http://localhost:3000"], // Replace with your frontend domain
+    origin: [
+      // "https://hatim.digital.com","https://hatim.digital",
+       "http://localhost:3000"
+      ], // Replace with your frontend domain
     credentials: true,
   })
 );

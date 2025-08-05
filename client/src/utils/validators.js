@@ -1,7 +1,7 @@
 // utils/validators.js
 export const validateExpense = (expenseData) => {
   const errors = {};
-  console.log(expenseData);
+  
 
   if (!expenseData.amount) errors.amount = "Amount is required";
   if (!expenseData.category) errors.category = "Category is required";
@@ -18,7 +18,7 @@ export const validateExpense = (expenseData) => {
 // Similar for income and saving...
 export const validateIncome = (incomeData) => {
   const errors = {};
-  console.log(incomeData);
+  
 
   if (!incomeData.amount) errors.amount = "Amount is required";
   if (!incomeData.category) errors.category = "Category is required";
@@ -36,7 +36,7 @@ export const validateIncome = (incomeData) => {
 // Similar for income and saving...
 export const validateSaving = (savingData) => {
   const errors = {};
-  console.log(savingData);
+  
 
   if (!savingData.amount) errors.amount = "Amount is required";
   if (!savingData.category) errors.category = "Category is required";
@@ -45,7 +45,7 @@ export const validateSaving = (savingData) => {
     errors.depoMethode = "Deposit Methode is required";
   if (!savingData.status) errors.status = "Status is required";
 
-  // console.log(errorss);
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
@@ -60,12 +60,12 @@ export const validateSaving = (savingData) => {
 // validat customer...
 export const validateCustomer = (customerData) => {
   const errors = {};
-  console.log(customerData);
+  
 
   if (!customerData.fullName) errors.fullName = "FullName is required";
   if (customerData.phone.length < 10) errors.phone = "Phone is required";
 
-  // console.log(errorss);
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
@@ -74,7 +74,7 @@ export const validateCustomer = (customerData) => {
 // validat customer...
 export const validateAppointment = (appointmentData) => {
   const errors = {};
-  console.log(appointmentData);
+  
 
   // !work on form validation
 
@@ -137,7 +137,7 @@ export const validateAppointment = (appointmentData) => {
     errors.type = "Type is not valid";
   }
 
-  // console.log(errorss);
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
@@ -146,7 +146,7 @@ export const validateAppointment = (appointmentData) => {
 
 export const validateSubService = (subServiceData) => {
   const errors = {};
-  console.log(subServiceData);
+  
 
   if (!subServiceData.title) errors.title = "Sub-Service title is required";
 
@@ -158,7 +158,7 @@ export const validateSubService = (subServiceData) => {
 
 export const validatePackage = (packageData) => {
   const errors = {};
-  console.log(packageData);
+  
 
   if (!packageData.name) errors.name = "Package name is required";
   if (!packageData.price) errors.price = "Price is required";
@@ -171,7 +171,7 @@ export const validatePackage = (packageData) => {
 
 export const validateService = (serviceData) => {
   const errors = {};
-  console.log(serviceData);
+  
 
   if (!serviceData.title) errors.title = "Service title is required";
 
@@ -186,7 +186,7 @@ export const validateService = (serviceData) => {
 // validat Employee...
 export const validateEmployee = (employeeData) => {
   const errors = {};
-  console.log(employeeData);
+  
 
   if (!employeeData.details.firstName) errors.firstName = "first Name is required";
   if (!employeeData.details.email) errors.email = "Email is required";
@@ -195,7 +195,7 @@ export const validateEmployee = (employeeData) => {
   if (!employeeData.details.department) errors.department = "Department is required";
   if (employeeData.details.role !== 111 && employeeData.details.status === 111) errors.status = "Status is required";
 
-  // console.log(errorss);
+
   return {
     isValid: Object.keys(errors).length === 0,
     errors,
@@ -205,7 +205,7 @@ export const validateEmployee = (employeeData) => {
 
 export const validateNeeds = (needData) => {
   const errors = {};
-  console.log(needData);
+  
 
   if (!needData.name) errors.name = "Product Name is required";
   if (!needData.quantity) errors.quantity = "Quantity is required";
@@ -219,7 +219,7 @@ export const validateNeeds = (needData) => {
 
 export const validateNote = (noteData) => {
   const errors = {};
-  console.log(noteData);
+  
 
   if (!noteData.writer) errors.writer = "Writer is required";
   if (!noteData.category) errors.category = "Category is required";
@@ -234,7 +234,7 @@ export const validateNote = (noteData) => {
 
 export const validateRegister = (registerData) => {
   const errors = {};
-  console.log(registerData);
+  
 
   // Name validations
   if (!registerData.firstName?.trim()) {

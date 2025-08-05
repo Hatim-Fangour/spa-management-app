@@ -41,10 +41,7 @@ class AuthService {
 
       // Verify with backend
       const response = await api.post("/auth/login", { token });
-    
 
-      const user = response.data;
-    
 
       return {
         user: response.data,

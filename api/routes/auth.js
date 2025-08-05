@@ -111,6 +111,8 @@ authRoute.post("/login", async (req, res) => {
     try {
       const userDoc = await db.collection("users").doc(decodedToken.uid).get();
       const storedUserData = userDoc.data();
+
+
       
       
       

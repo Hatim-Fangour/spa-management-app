@@ -118,6 +118,7 @@ const authSlice = createSlice({
 
       .addCase(loginUser.fulfilled, (state, action) => {
         const { auth } = action.payload;
+        console.log(auth)
 
         // const { customClaims, token,...restUser } = action.payload;
 
@@ -137,6 +138,7 @@ const authSlice = createSlice({
           lastName: auth.user.lastName,
           createdAt: auth.user.createdAt,
         };
+
         // state.isAuthenticated = auth.user.role !== 111 ? true : false; // Set isAuthenticated to true
         state.isAuthenticated = auth.user.role !== 111 ? true : false; // Set isAuthenticated to true
       })

@@ -18,10 +18,12 @@ export const StrictAuthRedirector = ({ children }) => {
     (state) => state?.auth || {}
   );
   const [shouldRender, setShouldRender] = useState(false);
-
+console.log({ isAuthenticated, claims })
   useEffect(() => {
     if (isAuthenticated) {
+      console.log(claims)
       const roleBasedRedirect = getRoleRedirect(claims);
+      console.log(roleBasedRedirect)
       // Immediate redirect without showing the protected page
       navigate(roleBasedRedirect, {
         replace: true,
