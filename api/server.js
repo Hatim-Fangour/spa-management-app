@@ -39,7 +39,7 @@ app.use(
   cors({
     // origin: "http://localhost:3000",
     origin: [
-      // "https://hatim.digital.com","https://hatim.digital",
+      "https://hatim.digital.com","https://hatim.digital",
        "http://localhost:3000"
       ], // Replace with your frontend domain
     credentials: true,
