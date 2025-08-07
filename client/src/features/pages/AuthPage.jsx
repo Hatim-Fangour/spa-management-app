@@ -21,7 +21,6 @@ import { initRegisterData } from "../auth/utils/authUtils";
 const AuthPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState({

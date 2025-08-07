@@ -13,7 +13,6 @@ import ErrorComp from "../features/dashboard/components/ErrorComp";
 
 export default function FirebaseDataLoader({ children }) {
   const dispatch = useDispatch();
-  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -32,12 +31,12 @@ export default function FirebaseDataLoader({ children }) {
             expenses.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
           )
         );
-        // dispatch(setIncomes(
-        //   incomes.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-        // ));
-        // dispatch(setSavings(
-        //   savings.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-        // ));
+        dispatch(setIncomes(
+          incomes.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        ));
+        dispatch(setSavings(
+          savings.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+        ));
       } catch (err) {
         setError(err);
       } finally {

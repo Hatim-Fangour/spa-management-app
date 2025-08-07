@@ -32,12 +32,12 @@ app.use(express.json());
 
 app.use(helmet());
 app.use(morgan("common"));
+
 // Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: true })); // To handle URL-encoded form data
 app.use(bodyParser.json()); // To handle JSON payloads
 app.use(
   cors({
-    // origin: "http://localhost:3000",
     origin: [
       // "https://hatim.digital.com","https://hatim.digital",
        "http://localhost:3000"
@@ -46,10 +46,6 @@ app.use(
   })
 );
 
-// app.use(cors({
-//   origin: ['https://yourdomain.com', 'http://localhost:3000'],
-//   credentials: true
-// }));
 
 
 // for exepmles here :  we already use http://localhost/api/auth

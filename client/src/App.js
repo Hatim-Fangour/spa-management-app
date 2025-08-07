@@ -2,11 +2,8 @@ import "./App.css";
 import {
   RouterProvider,
   createBrowserRouter,
-  useNavigate,
 } from "react-router-dom";
-// import { ProtectedRoute } from "./features/auth/utils/ProtectedRoute";
 import { RoleRoute } from "./features/auth/utils/RoleRoute";
-// import { prepareData } from "./features/auth/prepareData";
 import { Layout } from "./features/auth/utils/layout";
 import NotFound from "./features/pages/NotFound";
 

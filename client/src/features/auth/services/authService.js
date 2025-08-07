@@ -1,4 +1,5 @@
 // import  { LoginCredentials, RegisterCredentials, AuthResponse, User } from "./types"
+import api from "../../../services/api";
 import { auth, signInWithGoogle } from "../../../services/firebase-client";
 import {
   signInWithEmailAndPassword,
@@ -6,7 +7,6 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import api from "../../../services/api";
 
 class AuthService {
   formatAuthError = (error) => {
@@ -27,6 +27,7 @@ class AuthService {
   // Login with email and password
   async login(credentials) {
     try {
+      console.log(credentials)
       // Firebase authentication
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -34,14 +35,16 @@ class AuthService {
         credentials.password
       );
 
+
+      console.log(userCredential)
     
     
       // Get Firebase ID token
       const token = await userCredential?.user?.getIdToken();
-
+      console.log(token)
       // Verify with backend
       const response = await api.post("/auth/login", { token });
-
+      console.log(response)
 
       return {
         user: response.data,

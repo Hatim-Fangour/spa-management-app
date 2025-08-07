@@ -10,7 +10,6 @@ const storeUserInDb = async (collectionName = "users", uid, data) => {
     throw new Error(`Invalid role name: ${data?.role}`);
   }
 
-  
   await db
     .collection(collectionName)
     .doc(uid)
@@ -22,7 +21,6 @@ const storeEmployeeInDb = async (collectionName = "employees", uid, data) => {
     throw new Error(`Invalid role name: ${data?.role}`);
   }
 
-  
   await db
     .collection(collectionName)
     .doc(uid)
@@ -41,14 +39,12 @@ const authRoute = express.Router(); // Example route setup
 authRoute.post("/register", async (req, res) => {
   try {
     const { token, userData } = req.body;
-    
 
     // 1. Verify Firebase token
     const decodedToken = await admin.auth().verifyIdToken(token);
-    
+
     const uid = decodedToken.uid;
 
-    
     // 3. Create user profile in database
     const userProfile = {
       uid,
@@ -73,9 +69,6 @@ authRoute.post("/register", async (req, res) => {
       updatedAt: userProfile?.updatedAt,
     };
 
-    
-    
-
     storeUserInDb("users", uid, userProfile);
     storeEmployeeInDb("employees", uid, employeeProfile);
     // storeUserInDb()
@@ -91,7 +84,7 @@ authRoute.post("/register", async (req, res) => {
     // 5. Return user data
     res.status(200).json(userProfile);
   } catch (err) {
-     // show the err if any
+    // show the err if any
   }
 });
 
@@ -112,26 +105,23 @@ authRoute.post("/login", async (req, res) => {
       const userDoc = await db.collection("users").doc(decodedToken.uid).get();
       const storedUserData = userDoc.data();
 
-
-      
-      
-      
       res.status(200).json({ ...userRecord, ...storedUserData });
     } catch (error) {
-      
       res.status(404).json("User not found in db !");
     }
   } catch (err) {
-        if (err.code === "auth/id-token-expired") {
-          }
-    res.status(500).json(err);
+    console.error("Login error:", err); // ✅ Log full error
+    res.status(500).json({
+      error: err.message || "Internal Server Error",
+      code: err.code || "unknown",
+    });
   }
 });
 
 authRoute.get("/user/:id", async (req, res) => {
   try {
     const userId = req.params.id;
-    
+
     // 1. Get all customers from Firestore
     const docRef = await db.collection("users").doc(userId);
 
@@ -146,15 +136,13 @@ authRoute.get("/user/:id", async (req, res) => {
 
     const userDoc = await docRef.get();
 
-    
-
     res.status(200).json({
       success: true,
       message: "User loaded successfully",
       data: user,
     });
   } catch (err) {
-        res.status(500).json({
+    res.status(500).json({
       success: false,
       error: "Failed to loaded user",
     });
@@ -169,7 +157,7 @@ authRoute.post("/google", async (req, res) => {
     // 1. Verify Firebase token from Google sign-in
     const decodedToken = await admin.auth().verifyIdToken(token);
     const { uid, email, name, picture } = decodedToken;
-    
+
     // const uid = decodedToken.uid;
     // const email = decodedToken.email;
     // const displayName = decodedToken.name || '';
@@ -177,8 +165,6 @@ authRoute.post("/google", async (req, res) => {
     // 2. Check if user exists in your database
     const userRef = db.collection("users").doc(uid);
     const userDoc = await userRef.get();
-    
-    
 
     if (!userDoc.exists) {
       const defaultRole = 111; // Or whatever default you want
@@ -214,13 +200,9 @@ authRoute.post("/google", async (req, res) => {
       const userRecord = await admin.auth().getUser(uid);
       const userDoc = await db.collection("users").doc(uid).get();
       const storedUserData = userDoc.data();
-      
-      
+
       res.status(200).json({ ...userRecord, ...storedUserData });
     }
-
-
-
   } catch (err) {
     console.error("Google authentication error:", err);
 
@@ -250,7 +232,6 @@ authRoute.post("/verify-token", async (req, res) => {
     //   return res.status(400).json({ error: "Invalid token format" });
     // }
 
-    
     // Verify using Admin SDK
     const decodedToken = await admin.auth().verifyIdToken(token);
     // const userRecord = await admin.auth().getUser(decodedToken.uid);
@@ -267,7 +248,7 @@ authRoute.post("/verify-token", async (req, res) => {
       expiresIn: decodedToken.exp - Math.floor(Date.now() / 1000), // Seconds remaining
     });
   } catch (error) {
-        res.status(401).json({
+    res.status(401).json({
       error: "Token verification failed",
       code: error.code,
     });
